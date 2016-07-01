@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 DATA_IMG.7z.tmp
 *.tmp
+/volume_02F/nbproject/private/
+/volume_02F/build/
