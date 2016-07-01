@@ -13,10 +13,11 @@ import vtk.*;
  *
  * @author IMG_1
  */
-public class cube extends JPanel {
-   public static vtkRenderWindowPanel renderWindowPanel;
-   private static vtkCubeSource cubeSource; 
-    
+public class Cube extends JPanel {
+
+    public static vtkRenderWindowPanel renderWindowPanel;
+    private static vtkCubeSource cubeSource;
+
     static {
         System.loadLibrary("vtkCommonJava");
         System.loadLibrary("vtkFilteringJava");
@@ -25,9 +26,8 @@ public class cube extends JPanel {
         System.loadLibrary("vtkGraphicsJava");
         System.loadLibrary("vtkRenderingJava");
     }
-   
-    
-    public cube() {
+
+    public Cube() {
 
         /*
          vtkPoints point = new vtkPoints();
@@ -51,13 +51,20 @@ public class cube extends JPanel {
         cubeSource.SetXLength(10);
         cubeSource.SetYLength(10);
         cubeSource.SetZLength(10);
-        
+
         vtkPolyDataMapper mapper = new vtkPolyDataMapper();
         mapper.SetInputConnection(cubeSource.GetOutputPort());
 
         vtkActor actor = new vtkActor();
         actor.SetMapper(mapper);
         
+        vtkPolyDataMapper mapper2 = new vtkPolyDataMapper();
+        mapper2.SetInputConnection(cubeSource.GetOutputPort());
+
+        vtkActor actor2 = new vtkActor();
+        actor2.SetMapper(mapper);
+        actor2.GetProperty().SetColor(0, 1, 0);
+
 
         /*
          vtkMassProperties Mass = new vtkMassProperties();
@@ -65,19 +72,14 @@ public class cube extends JPanel {
          System.out.print(Mass);
         
          */
-        
-       
-        
-        
-        
-        
-        
         renderWindowPanel = new vtkRenderWindowPanel();
         renderWindowPanel.setPreferredSize(new Dimension(800, 500));
         renderWindowPanel.setInteractorStyle(new vtkInteractorStyleTrackballCamera());
         add(renderWindowPanel);
         renderWindowPanel.GetRenderer().AddActor(actor);
+        renderWindowPanel.GetRenderer().AddActor(actor2);
 
+        
         /*
          vtkPanel panel = new vtkPanel();
          panel.GetRenderer().AddActor(actor);
@@ -100,15 +102,9 @@ public class cube extends JPanel {
          renderWindowInteractor.Start();
         
          */
-        
-        
-        
-        
-        
     }
 
-    public static double tosetSize(float x,float y,float z) {
-        System.out.println("Cube Click");
+    public static double tosetSize(float x, float y, float z) {
         cubeSource.SetXLength(x);
         cubeSource.SetYLength(y);
         cubeSource.SetZLength(z);
@@ -118,11 +114,13 @@ public class cube extends JPanel {
         a.Update();
         vtkMassProperties b = new vtkMassProperties();
         b.SetInput(a.GetOutput());
-        System.out.print(b.GetVolume());
+        renderWindowPanel.GetRenderer().GetViewProps().InitTraversal();
+        renderWindowPanel.GetRenderer().GetViewProps().GetNextProp();
+        renderWindowPanel.GetRenderer().GetViewProps().GetNextProp().VisibilityOff();
+        renderWindowPanel.repaint();
         return b.GetVolume();
     }
-    
-    
+
     public static Double tosetSize() {
         vtkTriangleFilter a = new vtkTriangleFilter();
         a.SetInputConnection(cubeSource.GetOutputPort());

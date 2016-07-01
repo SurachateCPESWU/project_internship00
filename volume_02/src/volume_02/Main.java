@@ -5,6 +5,8 @@
  */
 package volume_02;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author IMG_1
@@ -24,9 +26,10 @@ public class Main extends javax.swing.JFrame {
 //        add(new show_bone());
 //        add(new test_pick());
 
-        add(new obj123_test());
+//        add(new obj123_test());
 //        add(new obj123_show());
-
+        add(new obj123_show2());
+//        add(new obj123_test2());
     }
 
     /**
@@ -73,7 +76,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                Main main = new Main();
+                main.setVisible(true);
+                main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                main.pack();
+                main.setVisible(true);
             }
         });
     }

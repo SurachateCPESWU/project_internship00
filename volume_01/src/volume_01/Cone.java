@@ -1,4 +1,3 @@
-
 package volume_01;
 
 import java.awt.Dimension;
@@ -7,9 +6,9 @@ import vtk.*;
 
 public class Cone extends JPanel {
 
-   public static vtkRenderWindowPanel renderWindowPanel;
-   private static vtkConeSource coneSource; 
-    
+    public static vtkRenderWindowPanel renderWindowPanel;
+    private static vtkConeSource coneSource;
+
     static {
         System.loadLibrary("vtkCommonJava");
         System.loadLibrary("vtkFilteringJava");
@@ -18,8 +17,7 @@ public class Cone extends JPanel {
         System.loadLibrary("vtkGraphicsJava");
         System.loadLibrary("vtkRenderingJava");
     }
-   
-    
+
     public Cone() {
         coneSource = new vtkConeSource();
         coneSource.SetHeight(10);
@@ -38,27 +36,28 @@ public class Cone extends JPanel {
         add(renderWindowPanel);
         renderWindowPanel.GetRenderer().AddActor(actor);
 
-        
     }
-    
-    public static double tosetSize(float h,float r){
+
+    public static double tosetSize(float r, float h) {
         coneSource.SetHeight(h);
         coneSource.SetRadius(r);
-
-        System.out.println("Cone Click");
-        
+        renderWindowPanel.repaint();
         vtkTriangleFilter a = new vtkTriangleFilter();
         a.SetInputConnection(coneSource.GetOutputPort());
         a.Update();
-        vtkPolyData out = new vtkPolyData();
-        out = a.GetOutput();
         vtkMassProperties b = new vtkMassProperties();
-        b.SetInput(out);
+        b.SetInput(a.GetOutput());
         System.out.print(a);
         return b.GetVolume();
-        
     }
-    
+
+    public static Double tosetSize() {
+        vtkTriangleFilter a = new vtkTriangleFilter();
+        a.SetInputConnection(coneSource.GetOutputPort());
+        a.Update();
+        vtkMassProperties b = new vtkMassProperties();
+        b.SetInput(a.GetOutput());
+        return b.GetVolume();
+    }
 
 }
-

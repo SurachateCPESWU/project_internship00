@@ -1,17 +1,14 @@
 package volume_01;
 
-
 import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-
-
 public class Cylinder extends JPanel {
 
-   public static vtkRenderWindowPanel renderWindowPanel;
-   private static vtkCylinderSource cylinderSource; 
-    
+    public static vtkRenderWindowPanel renderWindowPanel;
+    private static vtkCylinderSource cylinderSource;
+
     static {
         System.loadLibrary("vtkCommonJava");
         System.loadLibrary("vtkFilteringJava");
@@ -20,15 +17,13 @@ public class Cylinder extends JPanel {
         System.loadLibrary("vtkGraphicsJava");
         System.loadLibrary("vtkRenderingJava");
     }
-   
-    
+
     public Cylinder() {
         cylinderSource = new vtkCylinderSource();
-        cylinderSource.SetCenter(0,0,0);
+        cylinderSource.SetCenter(0, 0, 0);
         cylinderSource.SetRadius(5);
         cylinderSource.SetHeight(10);
         cylinderSource.SetResolution(100);
-
 
         vtkPolyDataMapper mapper = new vtkPolyDataMapper();
         mapper.SetInputConnection(cylinderSource.GetOutputPort());
@@ -42,28 +37,28 @@ public class Cylinder extends JPanel {
         add(renderWindowPanel);
         renderWindowPanel.GetRenderer().AddActor(actor);
 
-        
     }
-    
-    public static double tosetSize(float r,float h){
+
+    public static double tosetSize(float r, float h) {
         cylinderSource.SetRadius(r);
         cylinderSource.SetHeight(h);
-        //renderWindowPanel.update(null);
-        System.out.println("Cylinder Click");
-        
-        
+        renderWindowPanel.repaint();
         vtkTriangleFilter a = new vtkTriangleFilter();
         a.SetInputConnection(cylinderSource.GetOutputPort());
         a.Update();
-        vtkPolyData out = new vtkPolyData();
-        out = a.GetOutput();
         vtkMassProperties b = new vtkMassProperties();
-        b.SetInput(out);
-        System.out.print(b.GetVolume());
+        b.SetInput(a.GetOutput());
         return b.GetVolume();
-        
-                
-                
+
+    }
+
+    public static Double tosetSize() {
+        vtkTriangleFilter a = new vtkTriangleFilter();
+        a.SetInputConnection(cylinderSource.GetOutputPort());
+        a.Update();
+        vtkMassProperties b = new vtkMassProperties();
+        b.SetInput(a.GetOutput());
+        return b.GetVolume();
     }
 
 }
