@@ -6,7 +6,11 @@
 package volume_ct;
 
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import vtk.vtkActor;
 import vtk.vtkInteractorStyleTrackballCamera;
 import vtk.vtkRenderWindowPanel;
@@ -34,6 +38,7 @@ public class Main extends javax.swing.JFrame {
     private static int s1, s2, s3, sgray;
 
     public Main() {
+
         initComponents();
 
         mainActor = new vtkActor();
@@ -132,8 +137,8 @@ public class Main extends javax.swing.JFrame {
         Render.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(Render, java.awt.BorderLayout.CENTER);
 
-        Setting.setPreferredSize(new java.awt.Dimension(800, 220));
-        Setting.setLayout(new java.awt.GridLayout());
+        Setting.setPreferredSize(new java.awt.Dimension(800, 190));
+        Setting.setLayout(new java.awt.GridLayout(1, 0));
 
         Setting_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Setting"));
         Setting_panel.setPreferredSize(new java.awt.Dimension(428, 65));
@@ -290,7 +295,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jRadioButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         Setting.add(Setting_panel);
@@ -345,7 +350,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out01, "Out01");
@@ -394,7 +399,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel13))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out02, "Out02");
@@ -443,7 +448,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel19))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out03, "Out03");
@@ -492,7 +497,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel25))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out04, "Out04");
@@ -541,7 +546,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel31))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out05, "Out05");
@@ -590,7 +595,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(jLabel37))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out06, "Out06");
@@ -734,6 +739,10 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+                }
 
                 Main main = new Main();
                 main.setVisible(true);
