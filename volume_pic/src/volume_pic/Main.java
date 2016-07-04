@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package volume_02;
+package volume_pic;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import static volume_02.Source_01.Actor_01;
-import static volume_02.Source_02.Actor_02;
-import static volume_02.Source_03.Actor_03;
-import static volume_02.Source_04.Actor_04;
-import static volume_02.Source_05.Actor_05;
-import static volume_02.Source_06.Actor_06;
+import static volume_pic.Source_01.Actor_01;
+import static volume_pic.Source_02.Actor_02;
+import static volume_pic.Source_03.Actor_03;
+import static volume_pic.Source_04.Actor_04;
+import static volume_pic.Source_05.Actor_05;
+import static volume_pic.Source_06.Actor_06;
 import vtk.vtkCamera;
 import vtk.vtkInteractorStyleTrackballCamera;
 import vtk.vtkProp;
@@ -61,6 +61,7 @@ public class Main extends javax.swing.JFrame {
         Setting = new javax.swing.JPanel();
         Setting_panel = new javax.swing.JPanel();
         select_source = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
         Output_panel = new javax.swing.JPanel();
         Out01 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -116,7 +117,6 @@ public class Main extends javax.swing.JFrame {
         Setting.setPreferredSize(new java.awt.Dimension(800, 200));
         Setting.setLayout(new java.awt.BorderLayout());
 
-        Setting_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Setting"));
         Setting_panel.setPreferredSize(new java.awt.Dimension(428, 65));
         Setting_panel.setRequestFocusEnabled(false);
 
@@ -127,20 +127,27 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("วัตถุ :");
+
         javax.swing.GroupLayout Setting_panelLayout = new javax.swing.GroupLayout(Setting_panel);
         Setting_panel.setLayout(Setting_panelLayout);
         Setting_panelLayout.setHorizontalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Setting_panelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(612, Short.MAX_VALUE))
         );
         Setting_panelLayout.setVerticalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Setting_panelLayout.createSequentialGroup()
-                .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Setting_panelLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap())
         );
 
         Setting.add(Setting_panel, java.awt.BorderLayout.PAGE_START);
@@ -558,6 +565,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

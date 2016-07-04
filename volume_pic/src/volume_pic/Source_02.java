@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package volume_02;
+package volume_pic;
 
 /**
  *
@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-public class Source_06 {
+public class Source_02 {
 
     static {
         System.loadLibrary("vtkCommonJava");
@@ -24,15 +24,15 @@ public class Source_06 {
         System.loadLibrary("vtkRenderingJava");
     }
 
-    public static vtkActor Actor_06;
+    public static vtkActor Actor_02;
 
-    public Source_06() {
+    public Source_02() {
         vtkMarchingCubes marchingCubes = new vtkMarchingCubes();
         vtkMassProperties mass = new vtkMassProperties();
         vtkVolume16Reader v16 = new vtkVolume16Reader();
 
         v16.SetDataDimensions(512, 512);
-        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\DATA_IMG\\512cylinder01\\512cylinder01_");
+        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\DATA_IMG\\512cube02\\512cube02_");
         v16.SetFilePattern("%s%.3d.raw");
         v16.SetImageRange(0, 511);
 
@@ -48,9 +48,9 @@ public class Source_06 {
 
         vtkPolyDataMapper Mapper = new vtkPolyDataMapper();
         Mapper.SetInput(marchingCubes.GetOutput());
-        Actor_06 = new vtkActor();
-        Actor_06.SetMapper(Mapper);
-        Actor_06.GetProperty().SetColor(0, 1, 0);
+        Actor_02 = new vtkActor();
+        Actor_02.SetMapper(Mapper);
+        Actor_02.GetProperty().SetColor(0, 1, 0);
 
     }
 

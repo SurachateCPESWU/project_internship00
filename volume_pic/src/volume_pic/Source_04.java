@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package volume_02;
+package volume_pic;
 
 /**
  *
@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-public class Source_01 {
+public class Source_04 {
 
     static {
         System.loadLibrary("vtkCommonJava");
@@ -24,21 +24,21 @@ public class Source_01 {
         System.loadLibrary("vtkRenderingJava");
     }
 
-    public static vtkActor Actor_01;
+    public static vtkActor Actor_04;
 
-    public Source_01() {
+    public Source_04() {
         vtkMarchingCubes marchingCubes = new vtkMarchingCubes();
         vtkMassProperties mass = new vtkMassProperties();
         vtkVolume16Reader v16 = new vtkVolume16Reader();
 
         v16.SetDataDimensions(512, 512);
-        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\DATA_IMG\\512cube1f\\512cube1f_");
+        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\DATA_IMG\\512cylinder1f\\512cylinder1f_");
         v16.SetFilePattern("%s%.3d.raw");
         v16.SetImageRange(0, 511);
 
       
         marchingCubes.SetInput(v16.GetOutput());
-        marchingCubes.SetValue(0, 498);
+        marchingCubes.SetValue(0, 499);
         marchingCubes.Update();
         marchingCubes.ComputeScalarsOff();
         marchingCubes.ComputeNormalsOff();
@@ -48,9 +48,9 @@ public class Source_01 {
 
         vtkPolyDataMapper Mapper = new vtkPolyDataMapper();
         Mapper.SetInput(marchingCubes.GetOutput());
-        Actor_01 = new vtkActor();
-        Actor_01.SetMapper(Mapper);
-        Actor_01.GetProperty().SetColor(0, 1, 0);
+        Actor_04 = new vtkActor();
+        Actor_04.SetMapper(Mapper);
+        Actor_04.GetProperty().SetColor(0, 1, 0);
 
     }
 
