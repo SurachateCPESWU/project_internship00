@@ -5,17 +5,10 @@
  */
 package volume_ct;
 
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import static volume_ct.Source_03.Actor_03;
-import static volume_ct.Source_04.Actor_04;
-import static volume_ct.Source_05.Actor_05;
-import static volume_ct.Source_06.Actor_06;
 import vtk.vtkActor;
-import vtk.vtkCamera;
 import vtk.vtkInteractorStyleTrackballCamera;
-import vtk.vtkProp;
 import vtk.vtkRenderWindowPanel;
 
 /**
@@ -24,26 +17,30 @@ import vtk.vtkRenderWindowPanel;
  */
 public class Main extends javax.swing.JFrame {
 
+    static {
+        System.loadLibrary("vtkCommonJava");
+        System.loadLibrary("vtkFilteringJava");
+        System.loadLibrary("vtkIOJava");
+        System.loadLibrary("vtkImagingJava");
+        System.loadLibrary("vtkGraphicsJava");
+        System.loadLibrary("vtkRenderingJava");
+    }
+
     /**
      * Creates new form Main
      */
     private static vtkRenderWindowPanel renderWindowPanel;
     private static vtkActor mainActor;
+    private static int s1, s2, s3, sgray;
 
     public Main() {
         initComponents();
 
-        new Source_03();
-        new Source_04();
-        new Source_05();
-        new Source_06();
-
-        
         mainActor = new vtkActor();
-        
-        mainActor.SetMapper(new Source_01(1069,2,1,1).getSourceMapper());
-        mainActor.GetProperty().SetColor(0,1,1);
+
+        mainActor.GetProperty().SetColor(0, 1, 1);
         renderWindowPanel = new vtkRenderWindowPanel();
+        this.jButton2.doClick();
         renderWindowPanel.setPreferredSize(new Dimension(800, 500));
         renderWindowPanel.setInteractorStyle(new vtkInteractorStyleTrackballCamera());
         renderWindowPanel.GetRenderer().AddActor(mainActor);
@@ -69,7 +66,6 @@ public class Main extends javax.swing.JFrame {
         Setting_panel = new javax.swing.JPanel();
         select_source = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -82,6 +78,8 @@ public class Main extends javax.swing.JFrame {
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
+        jLabel42 = new javax.swing.JLabel();
+        select_source2 = new javax.swing.JComboBox();
         Output_panel = new javax.swing.JPanel();
         Out01 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -134,27 +132,21 @@ public class Main extends javax.swing.JFrame {
         Render.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(Render, java.awt.BorderLayout.CENTER);
 
-        Setting.setPreferredSize(new java.awt.Dimension(800, 200));
+        Setting.setPreferredSize(new java.awt.Dimension(800, 220));
         Setting.setLayout(new java.awt.GridLayout());
 
+        Setting_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Setting"));
         Setting_panel.setPreferredSize(new java.awt.Dimension(428, 65));
         Setting_panel.setRequestFocusEnabled(false);
 
-        select_source.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "สี่เหลี่ยม", "ทรงสี่เหลี่ยมมุมฉาก", "ทรงลูกบาศ์ก", "วงกลม", "ทรงกระบอก1", "ทรงกระบอก2" }));
+        select_source.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.40 mm", "0.25 mm" }));
         select_source.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 select_sourceItemStateChanged(evt);
             }
         });
 
-        jLabel2.setText("วัตถุ :");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("ความละเอียด :");
 
         jLabel38.setText("Gray :");
 
@@ -208,6 +200,15 @@ public class Main extends javax.swing.JFrame {
         jRadioButton6.setText("50");
 
         jButton2.setText("Show");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel42.setText("วัตถุ :");
+
+        select_source2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
 
         javax.swing.GroupLayout Setting_panelLayout = new javax.swing.GroupLayout(Setting_panel);
         Setting_panel.setLayout(Setting_panelLayout);
@@ -231,9 +232,12 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(Setting_panelLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(34, 34, 34)
-                            .addComponent(jButton1))
+                            .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel42)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(select_source2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(101, 101, 101))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Setting_panelLayout.createSequentialGroup()
                             .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(Setting_panelLayout.createSequentialGroup()
@@ -249,7 +253,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jRadioButton4)
                                 .addComponent(jRadioButton2)))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         Setting_panelLayout.setVerticalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +262,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1))
+                    .addComponent(jLabel42)
+                    .addComponent(select_source2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
@@ -335,7 +340,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out01, "Out01");
@@ -384,7 +389,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel13))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out02, "Out02");
@@ -433,7 +438,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel19))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out03, "Out03");
@@ -482,7 +487,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel25))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out04, "Out04");
@@ -531,7 +536,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel31))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out05, "Out05");
@@ -580,7 +585,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(jLabel37))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out06, "Out06");
@@ -593,55 +598,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void select_sourceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_sourceItemStateChanged
-        CardLayout cardShow = (CardLayout) this.Output_panel.getLayout();
-        if (this.select_source.getSelectedIndex() == 0) {
-            cardShow.show(Output_panel, "Out01");
-            mainActor.SetMapper(new Source_01(1069,2,1,1).getSourceMapper());
-            renderWindowPanel.GetRenderer().AddActor(mainActor);
-            renderWindowPanel.resetCamera();
-            renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 1) {
-            cardShow.show(Output_panel, "Out02");
-            mainActor.SetMapper(new Source_02(1123,2,1,1).getSourceMapper());
-            renderWindowPanel.GetRenderer().AddActor(mainActor);
-            renderWindowPanel.resetCamera();
-            renderWindowPanel.repaint();
-        }
-//        }else if (this.select_source.getSelectedIndex() == 2) {
-//            cardShow.show(Output_panel, "Out03");
-//            renderWindowPanel.GetRenderer().RemoveAllViewProps();
-//            renderWindowPanel.GetRenderer().AddActor(Actor_03);
-//            renderWindowPanel.resetCamera();
-//            renderWindowPanel.repaint();
-//        }else if (this.select_source.getSelectedIndex() == 3) {
-//            cardShow.show(Output_panel, "Out04");
-//            renderWindowPanel.GetRenderer().RemoveAllViewProps();
-//            renderWindowPanel.GetRenderer().AddActor(Actor_04);
-//            renderWindowPanel.resetCamera();
-//            renderWindowPanel.repaint();
-//        }else if (this.select_source.getSelectedIndex() == 4) {
-//            cardShow.show(Output_panel, "Out05");
-//            renderWindowPanel.GetRenderer().RemoveAllViewProps();
-//            renderWindowPanel.GetRenderer().AddActor(Actor_05);
-//            renderWindowPanel.resetCamera();
-//            renderWindowPanel.repaint();
-//        }else if (this.select_source.getSelectedIndex() == 5) {
-//            cardShow.show(Output_panel, "Out06");
-//            renderWindowPanel.GetRenderer().RemoveAllViewProps();
-//            renderWindowPanel.GetRenderer().AddActor(Actor_06);
-//            renderWindowPanel.resetCamera();
-//            renderWindowPanel.repaint();
-//        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_select_sourceItemStateChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainActor.FastDelete();
-        mainActor.SetMapper(new Source_02(1123,2,1,1).getSourceMapper());
-        renderWindowPanel.repaint();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -658,6 +617,39 @@ public class Main extends javax.swing.JFrame {
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        s1 = (jRadioButton2.isSelected()) ? 1 : 0;
+        s2 = (jRadioButton4.isSelected()) ? 1 : 0;
+        s3 = (jRadioButton6.isSelected()) ? 1 : 0;
+        sgray = Integer.parseInt(this.jTextField1.getText());
+
+        if (this.select_source.getSelectedIndex() == 0) {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                mainActor.SetMapper(new Source_01(sgray, s1, s2, s3).getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                mainActor.SetMapper(new Source_02(sgray, s1, s2, s3).getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                mainActor.SetMapper(new Source_03(sgray, s1, s2, s3).getSourceMapper());
+            }
+        } else {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                mainActor.SetMapper(new Source_04(sgray, s1, s2, s3).getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                mainActor.SetMapper(new Source_05(sgray, s1, s2, s3).getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                mainActor.SetMapper(new Source_06(sgray, s1, s2, s3).getSourceMapper());
+            }
+        }
+        renderWindowPanel.repaint();
+        renderWindowPanel.resetCamera();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -713,7 +705,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Setting_panel;
     private javax.swing.ButtonGroup decimate;
     private javax.swing.ButtonGroup gauss;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -751,6 +742,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -764,6 +756,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox select_source;
+    private javax.swing.JComboBox select_source2;
     private javax.swing.ButtonGroup shrink;
     // End of variables declaration//GEN-END:variables
 }
