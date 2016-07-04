@@ -49,3 +49,5 @@ DATA_IMG.7z.tmp
 *.tmp
 /volume_02F/nbproject/private/
 /volume_02F/build/
+/volume_pic/nbproject/private/
+/volume_pic/build/

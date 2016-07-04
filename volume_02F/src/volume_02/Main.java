@@ -87,8 +87,10 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        renderWindowPanel.GetRenderer().GetProps().GetLastProp().VisibilityOff();
-        // TODO add your handling code here:
+        renderWindowPanel.GetRenderer().RemoveAllViewProps();
+        renderWindowPanel.resetCamera();
+        renderWindowPanel.repaint();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
