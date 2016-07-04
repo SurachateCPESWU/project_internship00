@@ -67,7 +67,7 @@ public class Main extends javax.swing.JFrame {
         select_source = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        gray_value = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel39 = new javax.swing.JLabel();
@@ -150,18 +150,18 @@ public class Main extends javax.swing.JFrame {
 
         jLabel38.setText("Gray :");
 
-        jTextField1.setText("1000");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        gray_value.setText("1000");
+        gray_value.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                gray_valueActionPerformed(evt);
             }
         });
 
         gauss.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
         jRadioButton1.setText("1.0");
 
         gauss.add(jRadioButton2);
+        jRadioButton2.setSelected(true);
         jRadioButton2.setText("0.5");
 
         jLabel39.setText("Guass :");
@@ -209,6 +209,11 @@ public class Main extends javax.swing.JFrame {
         jLabel42.setText("วัตถุ :");
 
         select_source2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        select_source2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                select_source2ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout Setting_panelLayout = new javax.swing.GroupLayout(Setting_panel);
         Setting_panel.setLayout(Setting_panelLayout);
@@ -227,7 +232,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(Setting_panelLayout.createSequentialGroup()
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gray_value, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(Setting_panelLayout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -267,7 +272,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gray_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
@@ -599,12 +604,34 @@ public class Main extends javax.swing.JFrame {
 
     private void select_sourceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_sourceItemStateChanged
 
+        if (this.select_source.getSelectedIndex() == 0) {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                this.gray_value.setText("1069");
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                this.gray_value.setText("1123");
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                this.gray_value.setText("1194");
+            }
+        } else {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                this.gray_value.setText("1064");
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                this.gray_value.setText("1091");
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                this.gray_value.setText("1123");
+            }
+        }
+        this.jButton2.doClick();
 // TODO add your handling code here:
     }//GEN-LAST:event_select_sourceItemStateChanged
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void gray_valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gray_valueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_gray_valueActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
@@ -622,7 +649,7 @@ public class Main extends javax.swing.JFrame {
         s1 = (jRadioButton2.isSelected()) ? 1 : 0;
         s2 = (jRadioButton4.isSelected()) ? 1 : 0;
         s3 = (jRadioButton6.isSelected()) ? 1 : 0;
-        sgray = Integer.parseInt(this.jTextField1.getText());
+        sgray = Integer.parseInt(this.gray_value.getText());
 
         if (this.select_source.getSelectedIndex() == 0) {
             if (this.select_source2.getSelectedIndex() == 0) {
@@ -650,6 +677,32 @@ public class Main extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void select_source2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_source2ItemStateChanged
+        if (this.select_source.getSelectedIndex() == 0) {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                this.gray_value.setText("1069");
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                this.gray_value.setText("1123");
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                this.gray_value.setText("1194");
+            }
+        } else {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                this.gray_value.setText("1064");
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                this.gray_value.setText("1091");
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                this.gray_value.setText("1123");
+            }
+        }
+        this.jButton2.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_select_source2ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -705,6 +758,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel Setting_panel;
     private javax.swing.ButtonGroup decimate;
     private javax.swing.ButtonGroup gauss;
+    private javax.swing.JTextField gray_value;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -754,7 +808,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox select_source;
     private javax.swing.JComboBox select_source2;
     private javax.swing.ButtonGroup shrink;
