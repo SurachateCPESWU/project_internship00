@@ -6,6 +6,7 @@
 package volume_ct;
 
 import java.awt.Dimension;
+import static java.lang.Math.abs;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -100,6 +101,8 @@ public class Main extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -241,7 +244,7 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jRadioButton4)
                                 .addComponent(jRadioButton2)))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         Setting_panelLayout.setVerticalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,6 +311,10 @@ public class Main extends javax.swing.JFrame {
 
         jLabel11.setText("?");
 
+        jLabel12.setText("?");
+
+        jLabel13.setText("?");
+
         javax.swing.GroupLayout Out01Layout = new javax.swing.GroupLayout(Out01);
         Out01.setLayout(Out01Layout);
         Out01Layout.setHorizontalGroup(
@@ -327,8 +334,6 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11))
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
                     .addGroup(Out01Layout.createSequentialGroup()
                         .addComponent(jLabel43)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,8 +341,16 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(Out01Layout.createSequentialGroup()
                         .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                        .addComponent(jLabel9))
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13))
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         Out01Layout.setVerticalGroup(
             Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,9 +376,13 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel13))
                 .addGap(25, 25, 25))
         );
 
@@ -379,7 +396,6 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void select_sourceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_sourceItemStateChanged
-
         if (this.select_source.getSelectedIndex() == 0) {
             if (this.select_source2.getSelectedIndex() == 0) {
                 this.gray_value.setText("1069");
@@ -392,7 +408,7 @@ public class Main extends javax.swing.JFrame {
             }
         } else {
             if (this.select_source2.getSelectedIndex() == 0) {
-                this.gray_value.setText("1064");
+                this.gray_value.setText("1014");
             }
             if (this.select_source2.getSelectedIndex() == 1) {
                 this.gray_value.setText("1091");
@@ -454,11 +470,13 @@ public class Main extends javax.swing.JFrame {
                 mainActor.SetMapper(source.getSourceMapper());
             }
         }
-        
+
         this.jLabel8.setText(this.select_source.getSelectedItem().toString());
         this.jLabel9.setText(this.select_source2.getSelectedItem().toString());
         this.jLabel10.setText(Double.toString(source.getMVolume()));
-        this.jLabel11.setText(String.format("%.2f",source.getVolume()));
+        this.jLabel11.setText(String.format("%.2f", source.getVolume()));
+        this.jLabel12.setText(String.format("%.2f", abs(source.getMVolume() - source.getVolume())));
+        this.jLabel13.setText(String.format("%.2f%%", abs(source.getMVolume() - source.getVolume()) / source.getMVolume() * 100));
         this.jLabel1.setText(this.gray_value.getText());
         renderWindowPanel.repaint();
         renderWindowPanel.resetCameraClippingRange();
@@ -476,7 +494,7 @@ public class Main extends javax.swing.JFrame {
                 this.gray_value.setText("1123");
             }
             if (this.select_source2.getSelectedIndex() == 2) {
-                this.gray_value.setText("1194");
+                this.gray_value.setText("1154");
             }
         } else {
             if (this.select_source2.getSelectedIndex() == 0) {
@@ -555,6 +573,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel38;

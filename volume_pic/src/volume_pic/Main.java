@@ -8,6 +8,7 @@ package volume_pic;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 import static volume_pic.Source_01.Actor_01;
 import static volume_pic.Source_02.Actor_02;
 import static volume_pic.Source_03.Actor_03;
@@ -117,7 +118,7 @@ public class Main extends javax.swing.JFrame {
         Setting.setPreferredSize(new java.awt.Dimension(800, 200));
         Setting.setLayout(new java.awt.BorderLayout());
 
-        Setting_panel.setPreferredSize(new java.awt.Dimension(428, 65));
+        Setting_panel.setPreferredSize(new java.awt.Dimension(428, 40));
         Setting_panel.setRequestFocusEnabled(false);
 
         select_source.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "สี่เหลี่ยม", "ทรงสี่เหลี่ยมมุมฉาก", "ทรงลูกบาศ์ก", "วงกลม", "ทรงกระบอก1", "ทรงกระบอก2" }));
@@ -143,7 +144,7 @@ public class Main extends javax.swing.JFrame {
         Setting_panelLayout.setVerticalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Setting_panelLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -202,7 +203,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out01, "Out01");
@@ -251,7 +252,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel13))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out02, "Out02");
@@ -300,7 +301,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel19))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out03, "Out03");
@@ -349,7 +350,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel25))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out04, "Out04");
@@ -398,7 +399,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel31))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out05, "Out05");
@@ -447,7 +448,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(jLabel37))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         Output_panel.add(Out06, "Out06");
@@ -467,31 +468,31 @@ public class Main extends javax.swing.JFrame {
             renderWindowPanel.GetRenderer().AddActor(Actor_01);
             renderWindowPanel.resetCamera();
             renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 1) {
+        } else if (this.select_source.getSelectedIndex() == 1) {
             cardShow.show(Output_panel, "Out02");
             renderWindowPanel.GetRenderer().RemoveAllViewProps();
             renderWindowPanel.GetRenderer().AddActor(Actor_02);
             renderWindowPanel.resetCamera();
             renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 2) {
+        } else if (this.select_source.getSelectedIndex() == 2) {
             cardShow.show(Output_panel, "Out03");
             renderWindowPanel.GetRenderer().RemoveAllViewProps();
             renderWindowPanel.GetRenderer().AddActor(Actor_03);
             renderWindowPanel.resetCamera();
             renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 3) {
+        } else if (this.select_source.getSelectedIndex() == 3) {
             cardShow.show(Output_panel, "Out04");
             renderWindowPanel.GetRenderer().RemoveAllViewProps();
             renderWindowPanel.GetRenderer().AddActor(Actor_04);
             renderWindowPanel.resetCamera();
             renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 4) {
+        } else if (this.select_source.getSelectedIndex() == 4) {
             cardShow.show(Output_panel, "Out05");
             renderWindowPanel.GetRenderer().RemoveAllViewProps();
             renderWindowPanel.GetRenderer().AddActor(Actor_05);
             renderWindowPanel.resetCamera();
             renderWindowPanel.repaint();
-        }else if (this.select_source.getSelectedIndex() == 5) {
+        } else if (this.select_source.getSelectedIndex() == 5) {
             cardShow.show(Output_panel, "Out06");
             renderWindowPanel.GetRenderer().RemoveAllViewProps();
             renderWindowPanel.GetRenderer().AddActor(Actor_06);
@@ -532,7 +533,10 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+                }
                 Main main = new Main();
                 main.setVisible(true);
                 main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

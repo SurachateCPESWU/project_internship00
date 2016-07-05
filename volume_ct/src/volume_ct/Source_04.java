@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-public class Source_04 implements Source{
+public class Source_04 implements Source {
 
     static {
         System.loadLibrary("vtkCommonJava");
@@ -30,15 +30,6 @@ public class Source_04 implements Source{
     private static final double MVOLUME = 7238.23;
 
     public Source_04(int gray, int ngauss, int nshrink, int ndec) {
-
-//        #### 0.4 ####
-//        0-51      1070
-//        0-44      1134
-//        0-44      1169
-//        #### 0.25 ####
-//        0-72      1014
-//        0-75      1099
-//        0-75      1136
         marchingCubes = new vtkMarchingCubes();
         mass = new vtkMassProperties();
         vtkVolume16Reader v16 = new vtkVolume16Reader();
@@ -65,9 +56,9 @@ public class Source_04 implements Source{
         shrink.SetInput(gauss.GetOutput());
         shrink.AveragingOn();
         if (nshrink == 0) {
-            shrink.SetShrinkFactors(1, 1, 1);//1
+            shrink.SetShrinkFactors(1, 1, 1);
         } else if (nshrink == 1) {
-            shrink.SetShrinkFactors(2, 2, 2);//2
+            shrink.SetShrinkFactors(2, 2, 2);
         } else {
             System.out.println("Error in Shrink setting");
         }
@@ -87,9 +78,9 @@ public class Source_04 implements Source{
         dec.SetInput(nm.GetOutput());
 
         if (ndec == 0) {
-            dec.SetTargetReduction(10 / 100.0); //1
+            dec.SetTargetReduction(10 / 100.0);
         } else if (ndec == 1) {
-            dec.SetTargetReduction(50 / 100.0); //2
+            dec.SetTargetReduction(50 / 100.0);
         } else {
             System.out.println("Error in Decimate setting");
         }
@@ -101,16 +92,16 @@ public class Source_04 implements Source{
 
     }
 
-    public  vtkPolyDataMapper getSourceMapper() {
+    public vtkPolyDataMapper getSourceMapper() {
         return sourceMapper;
     }
 
-    public  double getVolume() {
+    public double getVolume() {
         mass.SetInput(marchingCubes.GetOutput());
-        return mass.GetVolume()*(0.25*0.25*0.25);
+        return mass.GetVolume() * (0.25 * 0.25 * 0.25);
     }
 
-    public  double getMVolume() {
+    public double getMVolume() {
         return MVOLUME;
     }
 }

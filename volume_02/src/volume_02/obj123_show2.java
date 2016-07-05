@@ -29,10 +29,10 @@ public class obj123_show2 extends JPanel {
     public static vtkVolume16Reader v16 = new vtkVolume16Reader();
 
     public obj123_show2() {
-        v16.SetDataDimensions(600, 600);
-        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_025mmCTno_linepairs\\obj02\\obj02_");
+        v16.SetDataDimensions(400, 400);
+        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\DATA_IMG\\QRM_04mmCTno_linepairs\\raw\\S_");
         v16.SetFilePattern("%s%.3d.raw");
-        v16.SetImageRange(0, 72);
+        v16.SetImageRange(155, 200);
 
         
         
@@ -98,9 +98,9 @@ public class obj123_show2 extends JPanel {
         Actor.GetProperty().SetColor(0, 1, 0);
 
         vtkCamera aCamera = new vtkCamera();
-        aCamera.SetViewUp(0, 0, -1);
-        aCamera.SetPosition(0, 1, 0);
-        aCamera.SetFocalPoint(0, 0, 0);
+        aCamera.SetViewUp(0, 1, 0);
+//        aCamera.SetPosition(0, 1, 0);
+//        aCamera.SetFocalPoint(0, 0, 0);
         aCamera.ComputeViewPlaneNormal();
 
         vtkRenderWindowPanel renderWindowPanel = new vtkRenderWindowPanel();
