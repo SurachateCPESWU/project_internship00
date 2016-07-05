@@ -36,6 +36,7 @@ public class Main extends javax.swing.JFrame {
     private static vtkRenderWindowPanel renderWindowPanel;
     private static vtkActor mainActor;
     private static int s1, s2, s3, sgray;
+    private static Source source;
 
     public Main() {
 
@@ -43,7 +44,7 @@ public class Main extends javax.swing.JFrame {
 
         mainActor = new vtkActor();
 
-        mainActor.GetProperty().SetColor(0, 1, 1);
+        mainActor.GetProperty().SetColor(0, 1, 0);
         renderWindowPanel = new vtkRenderWindowPanel();
         this.jButton2.doClick();
         renderWindowPanel.setPreferredSize(new Dimension(800, 500));
@@ -87,51 +88,23 @@ public class Main extends javax.swing.JFrame {
         select_source2 = new javax.swing.JComboBox();
         Output_panel = new javax.swing.JPanel();
         Out01 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        Out02 = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        Out03 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        Out04 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        Out05 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        Out06 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        Render.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Render.setMinimumSize(new java.awt.Dimension(800, 600));
         Render.setPreferredSize(new java.awt.Dimension(800, 600));
         Render.setLayout(new java.awt.GridLayout(1, 0));
@@ -150,12 +123,17 @@ public class Main extends javax.swing.JFrame {
                 select_sourceItemStateChanged(evt);
             }
         });
+        select_source.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select_sourceActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ความละเอียด :");
 
-        jLabel38.setText("Gray :");
+        jLabel38.setText("ค่าสีเทา: ");
 
-        gray_value.setText("1000");
+        gray_value.setText("1069");
         gray_value.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gray_valueActionPerformed(evt);
@@ -302,303 +280,96 @@ public class Main extends javax.swing.JFrame {
 
         Output_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Output"));
         Output_panel.setPreferredSize(new java.awt.Dimension(856, 100));
-        Output_panel.setLayout(new java.awt.CardLayout());
+        Output_panel.setLayout(new java.awt.GridLayout(1, 0));
 
         Out01.setPreferredSize(new java.awt.Dimension(844, 50));
 
-        jLabel1.setText("ขนาด : 400x400");
+        jLabel3.setText("พื้นที่(mm3) :");
 
-        jLabel3.setText("พื้นที่(voxel) : 160000");
+        jLabel4.setText("ค่าสีเทา :");
 
-        jLabel4.setText("ค่าสีเทา : 498");
+        jLabel5.setText("ค่าที่วัดได้จากโปรแกรม(mm3) : ");
 
-        jLabel5.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 159922.43 ");
+        jLabel6.setText("คลาดเคลื่อน (mm3) :");
 
-        jLabel6.setText("คลาดเคลื่อน (voxel) : 77.57");
+        jLabel7.setText("คลาดเคลื่อน  : ");
 
-        jLabel7.setText("คลาดเคลื่อน  : 0.048% ");
+        jLabel43.setText("ความละเอียด :");
+
+        jLabel44.setText("วัตถุ :");
+
+        jLabel1.setText("?");
+
+        jLabel8.setText("?");
+
+        jLabel9.setText("?");
+
+        jLabel10.setText("?");
+
+        jLabel11.setText("?");
 
         javax.swing.GroupLayout Out01Layout = new javax.swing.GroupLayout(Out01);
         Out01.setLayout(Out01Layout);
         Out01Layout.setHorizontalGroup(
             Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Out01Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11))
                     .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addContainerGap(63, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))
+                    .addGroup(Out01Layout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         Out01Layout.setVerticalGroup(
             Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Out01Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel43)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel44)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        Output_panel.add(Out01, "Out01");
-
-        jLabel8.setText("ขนาด : 300x300x400");
-
-        jLabel9.setText("ปริมาตร(voxel) : 36000000");
-
-        jLabel10.setText("ค่าสีเทา : 499");
-
-        jLabel11.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 36000160.81 ");
-
-        jLabel12.setText("คลาดเคลื่อน (voxel) : 160.82");
-
-        jLabel13.setText("คลาดเคลื่อน  : 0.000% ");
-
-        javax.swing.GroupLayout Out02Layout = new javax.swing.GroupLayout(Out02);
-        Out02.setLayout(Out02Layout);
-        Out02Layout.setHorizontalGroup(
-            Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out02Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        Out02Layout.setVerticalGroup(
-            Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out02Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Out01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12))
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out02Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(jLabel7)
+                .addGap(25, 25, 25))
         );
 
-        Output_panel.add(Out02, "Out02");
-
-        jLabel14.setText("ขนาด : 400x400x400");
-
-        jLabel15.setText("ปริมาตร(voxel) : 64000000");
-
-        jLabel16.setText("ค่าสีเทา : 499");
-
-        jLabel17.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 64000361.39");
-
-        jLabel18.setText("คลาดเคลื่อน (voxel) : 361.40");
-
-        jLabel19.setText("คลาดเคลื่อน  : 0.001% ");
-
-        javax.swing.GroupLayout Out03Layout = new javax.swing.GroupLayout(Out03);
-        Out03.setLayout(Out03Layout);
-        Out03Layout.setHorizontalGroup(
-            Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out03Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addGap(18, 18, 18)
-                .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        Out03Layout.setVerticalGroup(
-            Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out03Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel19))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        Output_panel.add(Out03, "Out03");
-
-        jLabel20.setText("รัศมี : 200");
-
-        jLabel21.setText("พื้นที่(voxel) : 125714.286 ");
-
-        jLabel22.setText("ค่าสีเทา : 499");
-
-        jLabel23.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 125646.297");
-
-        jLabel24.setText("คลาดเคลื่อน (voxel) : 67.99");
-
-        jLabel25.setText("คลาดเคลื่อน  : 0.001% ");
-
-        javax.swing.GroupLayout Out04Layout = new javax.swing.GroupLayout(Out04);
-        Out04.setLayout(Out04Layout);
-        Out04Layout.setHorizontalGroup(
-            Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out04Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22))
-                .addGap(18, 18, 18)
-                .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel23))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        Out04Layout.setVerticalGroup(
-            Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out04Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel23))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out04Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel25))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        Output_panel.add(Out04, "Out04");
-
-        jLabel26.setText("รัศมี : 150 , สูง : 400");
-
-        jLabel27.setText("พื้นที่(voxel) : 28285714.286");
-
-        jLabel28.setText("ค่าสีเทา : 477");
-
-        jLabel29.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 28285842.96");
-
-        jLabel30.setText("คลาดเคลื่อน (voxel) : 128.68");
-
-        jLabel31.setText("คลาดเคลื่อน  : 0.000% ");
-
-        javax.swing.GroupLayout Out05Layout = new javax.swing.GroupLayout(Out05);
-        Out05.setLayout(Out05Layout);
-        Out05Layout.setHorizontalGroup(
-            Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out05Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel28))
-                .addGap(18, 18, 18)
-                .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel29))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        Out05Layout.setVerticalGroup(
-            Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out05Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel29))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out05Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel31))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        Output_panel.add(Out05, "Out05");
-
-        jLabel32.setText("รัศมี : 200 , สูง : 400");
-
-        jLabel33.setText("พื้นที่(voxel) : 50285714.286");
-
-        jLabel34.setText("ค่าสีเทา : 478");
-
-        jLabel35.setText("ค่าที่วัดได้จากโปรแกรม(voxel) : 50285369.14");
-
-        jLabel36.setText("คลาดเคลื่อน (voxel) : 345.14");
-
-        jLabel37.setText("คลาดเคลื่อน  : 0.001% ");
-
-        javax.swing.GroupLayout Out06Layout = new javax.swing.GroupLayout(Out06);
-        Out06.setLayout(Out06Layout);
-        Out06Layout.setHorizontalGroup(
-            Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out06Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel34))
-                .addGap(18, 18, 18)
-                .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel37)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel35))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        Out06Layout.setVerticalGroup(
-            Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Out06Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabel35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel36))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Out06Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel37))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-
-        Output_panel.add(Out06, "Out06");
+        Output_panel.add(Out01);
 
         Setting.add(Output_panel);
 
@@ -617,7 +388,7 @@ public class Main extends javax.swing.JFrame {
                 this.gray_value.setText("1123");
             }
             if (this.select_source2.getSelectedIndex() == 2) {
-                this.gray_value.setText("1194");
+                this.gray_value.setText("1154");
             }
         } else {
             if (this.select_source2.getSelectedIndex() == 0) {
@@ -655,29 +426,42 @@ public class Main extends javax.swing.JFrame {
         s2 = (jRadioButton4.isSelected()) ? 1 : 0;
         s3 = (jRadioButton6.isSelected()) ? 1 : 0;
         sgray = Integer.parseInt(this.gray_value.getText());
-
+        source = null;
         if (this.select_source.getSelectedIndex() == 0) {
             if (this.select_source2.getSelectedIndex() == 0) {
-                mainActor.SetMapper(new Source_01(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_01(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
             if (this.select_source2.getSelectedIndex() == 1) {
-                mainActor.SetMapper(new Source_02(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_02(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
             if (this.select_source2.getSelectedIndex() == 2) {
-                mainActor.SetMapper(new Source_03(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_03(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
         } else {
             if (this.select_source2.getSelectedIndex() == 0) {
-                mainActor.SetMapper(new Source_04(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_04(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
             if (this.select_source2.getSelectedIndex() == 1) {
-                mainActor.SetMapper(new Source_05(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_05(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
             if (this.select_source2.getSelectedIndex() == 2) {
-                mainActor.SetMapper(new Source_06(sgray, s1, s2, s3).getSourceMapper());
+                source = new Source_06(sgray, s1, s2, s3);
+                mainActor.SetMapper(source.getSourceMapper());
             }
         }
+        
+        this.jLabel8.setText(this.select_source.getSelectedItem().toString());
+        this.jLabel9.setText(this.select_source2.getSelectedItem().toString());
+        this.jLabel10.setText(Double.toString(source.getMVolume()));
+        this.jLabel11.setText(String.format("%.2f",source.getVolume()));
+        this.jLabel1.setText(this.gray_value.getText());
         renderWindowPanel.repaint();
+        renderWindowPanel.resetCameraClippingRange();
         renderWindowPanel.resetCamera();
 
 // TODO add your handling code here:
@@ -696,7 +480,7 @@ public class Main extends javax.swing.JFrame {
             }
         } else {
             if (this.select_source2.getSelectedIndex() == 0) {
-                this.gray_value.setText("1064");
+                this.gray_value.setText("1014");
             }
             if (this.select_source2.getSelectedIndex() == 1) {
                 this.gray_value.setText("1091");
@@ -708,6 +492,10 @@ public class Main extends javax.swing.JFrame {
         this.jButton2.doClick();
         // TODO add your handling code here:
     }//GEN-LAST:event_select_source2ItemStateChanged
+
+    private void select_sourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_sourceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_select_sourceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -756,11 +544,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Out01;
-    private javax.swing.JPanel Out02;
-    private javax.swing.JPanel Out03;
-    private javax.swing.JPanel Out04;
-    private javax.swing.JPanel Out05;
-    private javax.swing.JPanel Out06;
     private javax.swing.JPanel Output_panel;
     private javax.swing.JPanel Render;
     private javax.swing.JPanel Setting;
@@ -772,40 +555,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

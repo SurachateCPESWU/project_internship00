@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-public class Source_05 {
+public class Source_05 implements Source{
 
     static {
         System.loadLibrary("vtkCommonJava");
@@ -27,6 +27,7 @@ public class Source_05 {
     private static vtkPolyDataMapper sourceMapper;
     private static vtkMassProperties mass;
     private static vtkMarchingCubes marchingCubes;
+    private static final double MVOLUME = 10080;
 
     public Source_05(int gray, int ngauss, int nshrink, int ndec) {
 
@@ -47,7 +48,6 @@ public class Source_05 {
         v16.SetFilePattern("%s%.3d.raw");
         v16.SetImageRange(0, 75);
 
-        
         vtkImageGaussianSmooth gauss = new vtkImageGaussianSmooth();
         gauss.SetInput(v16.GetOutput());
         gauss.SetDimensionality(3);
@@ -61,7 +61,6 @@ public class Source_05 {
         }
         gauss.Update();
 
-        
         vtkImageShrink3D shrink = new vtkImageShrink3D();
         shrink.SetInput(gauss.GetOutput());
         shrink.AveragingOn();
@@ -79,13 +78,11 @@ public class Source_05 {
         marchingCubes.Update();
         marchingCubes.ComputeScalarsOff();
 
-        
-        
         vtkPolyDataNormals nm = new vtkPolyDataNormals();
         nm.SetInput(marchingCubes.GetOutput());
         nm.SetFeatureAngle(60);
         nm.Update();
-        
+
         vtkDecimatePro dec = new vtkDecimatePro();
         dec.SetInput(nm.GetOutput());
 
@@ -104,13 +101,16 @@ public class Source_05 {
 
     }
 
-    public static vtkPolyDataMapper getSourceMapper() {
+    public  vtkPolyDataMapper getSourceMapper() {
         return sourceMapper;
     }
 
-    public static double getVolume() {
+    public  double getVolume() {
         mass.SetInput(marchingCubes.GetOutput());
-        return mass.GetVolume();
+        return mass.GetVolume()*(0.25*0.25*0.25);
     }
 
+    public  double getMVolume() {
+        return MVOLUME;
+    }
 }

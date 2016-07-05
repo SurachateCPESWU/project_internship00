@@ -36,7 +36,7 @@ public class obj123_test2 extends JPanel {
 //        v16.SetDataDimensions(400, 400);
 //        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_04mmCTno_linepairs\\obj03\\obj03_");
         v16.SetDataDimensions(600, 600);
-        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_025mmCTno_linepairs\\obj03\\obj03_");
+        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_025mmCTno_linepairs\\obj01\\obj01_");
 
         v16.SetFilePattern("%s%.3d.raw");
 
@@ -56,13 +56,13 @@ public class obj123_test2 extends JPanel {
         int o5 = 1099;
         int o6 = 1136;
 
-        v16.SetImageRange(0, 75);
+        v16.SetImageRange(0, 72);
 
         for (int ngauss = 0; ngauss <= 1; ngauss++) {
             for (int nshrink = 0; nshrink <= 1; nshrink++) {
                 for (int ndec = 1; ndec <= 1; ndec++) {
                     System.out.print("\n\n\nGauss = " + ngauss + "; " + "Shrink = " + nshrink + "; " + "Dec = " + ndec + " ;\n");
-                    for (int con_value = o6 - 50; con_value < o6 + 50; con_value++) {
+                    for (int con_value = o4 - 50; con_value < o4 + 50; con_value++) {
                         report(con_value, ngauss, nshrink, ndec);
                     }
                 }

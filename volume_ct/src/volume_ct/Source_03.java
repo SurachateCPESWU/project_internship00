@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import vtk.*;
 
-public class Source_03 {
+public class Source_03 implements Source{
 
     static {
         System.loadLibrary("vtkCommonJava");
@@ -27,7 +27,7 @@ public class Source_03 {
     private static vtkPolyDataMapper sourceMapper;
     private static vtkMassProperties mass;
     private static vtkMarchingCubes marchingCubes;
-
+    private static final double MVOLUME = 10080;
     public Source_03(int gray, int ngauss, int nshrink, int ndec) {
 
 //        #### 0.4 ####
@@ -104,13 +104,17 @@ public class Source_03 {
 
     }
 
-    public static vtkPolyDataMapper getSourceMapper() {
+    public  vtkPolyDataMapper getSourceMapper() {
         return sourceMapper;
     }
 
-    public static double getVolume() {
+    public  double getVolume() {
         mass.SetInput(marchingCubes.GetOutput());
-        return mass.GetVolume();
+        return mass.GetVolume()*(0.4*0.4*0.4);
     }
 
+    public  double getMVolume() {
+        return MVOLUME;
+    }
+    
 }
