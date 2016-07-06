@@ -60,7 +60,7 @@ public class obj123_test2 extends JPanel {
 
         for (int ngauss = 0; ngauss <= 1; ngauss++) {
             for (int nshrink = 0; nshrink <= 1; nshrink++) {
-                for (int ndec = 1; ndec <= 1; ndec++) {
+                for (int ndec = 0; ndec <= 1; ndec++) {
                     System.out.print("\n\n\nGauss = " + ngauss + "; " + "Shrink = " + nshrink + "; " + "Dec = " + ndec + " ;\n");
                     for (int con_value = o4 - 50; con_value < o4 + 50; con_value++) {
                         report(con_value, ngauss, nshrink, ndec);
@@ -115,7 +115,7 @@ public class obj123_test2 extends JPanel {
         dec.Update();
 
         mass.SetInput(dec.GetOutput());
-        System.out.printf("%.3f\n", mass.GetVolume());
+        System.out.printf("%f\n", mass.GetVolume());
 
         gauss.RemoveAllInputs();
         shrink.RemoveAllInputs();

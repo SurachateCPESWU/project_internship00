@@ -27,6 +27,7 @@ public class Source_02 implements Source {
     private static vtkPolyDataMapper sourceMapper;
     private static vtkMassProperties mass;
     private static vtkMarchingCubes marchingCubes;
+    private static vtkDecimatePro dec;
     private static final double MVOLUME = 10080;
 
     public Source_02(int gray, int ngauss, int nshrink, int ndec) {
@@ -74,7 +75,7 @@ public class Source_02 implements Source {
         nm.SetFeatureAngle(60);
         nm.Update();
 
-        vtkDecimatePro dec = new vtkDecimatePro();
+        dec = new vtkDecimatePro();
         dec.SetInput(nm.GetOutput());
 
         if (ndec == 0) {
@@ -97,7 +98,7 @@ public class Source_02 implements Source {
     }
 
     public double getVolume() {
-        mass.SetInput(marchingCubes.GetOutput());
+        mass.SetInput(dec.GetOutput());
         return mass.GetVolume() * (0.4 * 0.4 * 0.4);
     }
 

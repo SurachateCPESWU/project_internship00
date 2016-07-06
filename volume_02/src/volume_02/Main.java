@@ -28,8 +28,8 @@ public class Main extends javax.swing.JFrame {
 
 //        add(new obj123_test());
 //        add(new obj123_show());
-        add(new obj123_show2());
-//        add(new obj123_test2());
+//        add(new obj123_show2());
+        add(new obj123_test2());
     }
 
     /**
