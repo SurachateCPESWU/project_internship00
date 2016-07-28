@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import vtk.vtkActor;
+import vtk.vtkImageData;
+//import vtk.vtkImageSlice;
 import vtk.vtkInteractorStyleTrackballCamera;
 import vtk.vtkRenderWindowPanel;
 
@@ -75,15 +77,6 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         gray_value = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jLabel41 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jLabel42 = new javax.swing.JLabel();
         select_source2 = new javax.swing.JComboBox();
@@ -143,48 +136,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        gauss.add(jRadioButton1);
-        jRadioButton1.setText("1.0");
-
-        gauss.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("0.5");
-
-        jLabel39.setText("Guass :");
-
-        jLabel40.setText("Shrink :");
-
-        shrink.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("1");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-
-        shrink.add(jRadioButton4);
-        jRadioButton4.setText("2");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
-
-        jLabel41.setText("Decimate :");
-
-        decimate.add(jRadioButton5);
-        jRadioButton5.setSelected(true);
-        jRadioButton5.setText("10");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
-            }
-        });
-
-        decimate.add(jRadioButton6);
-        jRadioButton6.setText("50");
-
         jButton2.setText("Show");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,43 +159,23 @@ public class Main extends javax.swing.JFrame {
             .addGroup(Setting_panelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addGroup(Setting_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel41)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton5)
+                        .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton6))
+                        .addComponent(jLabel42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(select_source2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(163, Short.MAX_VALUE))
                     .addGroup(Setting_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel38)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gray_value, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(Setting_panelLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(select_source, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel42)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(select_source2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(101, 101, 101))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Setting_panelLayout.createSequentialGroup()
-                            .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(Setting_panelLayout.createSequentialGroup()
-                                    .addComponent(jLabel39)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Setting_panelLayout.createSequentialGroup()
-                                    .addComponent(jLabel40)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioButton3)
-                                    .addGap(12, 12, 12)))
-                            .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton4)
-                                .addComponent(jRadioButton2)))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addGroup(Setting_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(gray_value, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(279, Short.MAX_VALUE))))
         );
         Setting_panelLayout.setVerticalGroup(
             Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,23 +191,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel38)
                     .addComponent(gray_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel39))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Setting_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel41)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         Setting.add(Setting_panel);
@@ -425,66 +341,6 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gray_valueActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        s1 = (jRadioButton2.isSelected()) ? 1 : 0;
-        s2 = (jRadioButton4.isSelected()) ? 1 : 0;
-        s3 = (jRadioButton6.isSelected()) ? 1 : 0;
-        sgray = Integer.parseInt(this.gray_value.getText());
-        source = null;
-        if (this.select_source.getSelectedIndex() == 0) {
-            if (this.select_source2.getSelectedIndex() == 0) {
-                source = new Source_01(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-            if (this.select_source2.getSelectedIndex() == 1) {
-                source = new Source_02(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-            if (this.select_source2.getSelectedIndex() == 2) {
-                source = new Source_03(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-        } else {
-            if (this.select_source2.getSelectedIndex() == 0) {
-                source = new Source_04(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-            if (this.select_source2.getSelectedIndex() == 1) {
-                source = new Source_05(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-            if (this.select_source2.getSelectedIndex() == 2) {
-                source = new Source_06(sgray, s1, s2, s3);
-                mainActor.SetMapper(source.getSourceMapper());
-            }
-        }
-
-        this.jLabel8.setText(this.select_source.getSelectedItem().toString());
-        this.jLabel9.setText(this.select_source2.getSelectedItem().toString());
-        this.jLabel10.setText(Double.toString(source.getMVolume()));
-        this.jLabel11.setText(String.format("%.2f", source.getVolume()));
-        this.jLabel12.setText(String.format("%.2f", abs(source.getMVolume() - source.getVolume())));
-        this.jLabel13.setText(String.format("%.2f%%", abs(source.getMVolume() - source.getVolume()) / source.getMVolume() * 100));
-        this.jLabel1.setText(this.gray_value.getText());
-        renderWindowPanel.repaint();
-        renderWindowPanel.resetCameraClippingRange();
-        renderWindowPanel.resetCamera();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void select_source2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_select_source2ItemStateChanged
         if (this.select_source.getSelectedIndex() == 0) {
             if (this.select_source2.getSelectedIndex() == 0) {
@@ -514,6 +370,51 @@ public class Main extends javax.swing.JFrame {
     private void select_sourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select_sourceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_select_sourceActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        sgray = Integer.parseInt(this.gray_value.getText());
+        source = null;
+        if (this.select_source.getSelectedIndex() == 0) {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                source = new Source_01(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                source = new Source_02(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                source = new Source_03(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+        } else {
+            if (this.select_source2.getSelectedIndex() == 0) {
+                source = new Source_04(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 1) {
+                source = new Source_05(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+            if (this.select_source2.getSelectedIndex() == 2) {
+                source = new Source_06(sgray);
+                mainActor.SetMapper(source.getSourceMapper());
+            }
+        }
+
+        this.jLabel8.setText(this.select_source.getSelectedItem().toString());
+        this.jLabel9.setText(this.select_source2.getSelectedItem().toString());
+        this.jLabel10.setText(Double.toString(source.getMVolume()));
+        this.jLabel11.setText(String.format("%.2f", source.getVolume()));
+        this.jLabel12.setText(String.format("%.2f", abs(source.getMVolume() - source.getVolume())));
+        this.jLabel13.setText(String.format("%.2f%%", abs(source.getMVolume() - source.getVolume()) / source.getMVolume() * 100));
+        this.jLabel1.setText(this.gray_value.getText());
+        renderWindowPanel.repaint();
+        renderWindowPanel.resetCameraClippingRange();
+        renderWindowPanel.resetCamera();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -578,10 +479,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -590,12 +488,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JComboBox select_source;
     private javax.swing.JComboBox select_source2;
     private javax.swing.ButtonGroup shrink;

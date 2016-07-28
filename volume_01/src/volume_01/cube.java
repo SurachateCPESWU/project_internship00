@@ -34,6 +34,7 @@ public class Cube extends JPanel {
         cubeSource.SetYLength(10);
         cubeSource.SetZLength(10);
 
+        
         vtkPolyDataMapper mapper = new vtkPolyDataMapper();
         mapper.SetInputConnection(cubeSource.GetOutputPort());
 

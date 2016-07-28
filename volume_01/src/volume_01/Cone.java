@@ -24,8 +24,11 @@ public class Cone extends JPanel {
         coneSource.SetRadius(4);
         coneSource.SetResolution(100);
 
+        vtkTriangleFilter a = new vtkTriangleFilter();
+        a.SetInputConnection(coneSource.GetOutputPort());
+        a.Update();
         vtkPolyDataMapper mapper = new vtkPolyDataMapper();
-        mapper.SetInputConnection(coneSource.GetOutputPort());
+        mapper.SetInputConnection(a.GetOutputPort());
 
         vtkActor actor = new vtkActor();
         actor.SetMapper(mapper);

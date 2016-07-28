@@ -29,7 +29,8 @@ public class Sphere extends JPanel {
 
         vtkActor actor = new vtkActor();
         actor.SetMapper(mapper);
-
+        actor.GetProperty().SetColor(0, 0, 1);
+        
         renderWindowPanel = new vtkRenderWindowPanel();
         renderWindowPanel.setPreferredSize(new Dimension(800, 500));
         renderWindowPanel.setInteractorStyle(new vtkInteractorStyleTrackballCamera());

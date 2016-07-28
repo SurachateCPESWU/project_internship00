@@ -25,6 +25,7 @@ public class Cylinder extends JPanel {
         cylinderSource.SetHeight(10);
         cylinderSource.SetResolution(100);
 
+        
         vtkPolyDataMapper mapper = new vtkPolyDataMapper();
         mapper.SetInputConnection(cylinderSource.GetOutputPort());
 

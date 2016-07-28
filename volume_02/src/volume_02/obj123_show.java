@@ -30,15 +30,15 @@ public class obj123_show extends JPanel {
 
     public obj123_show() {
         v16.SetDataDimensions(600, 600);
-        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_025mmCTno_linepairs\\obj01\\obj01_");
+        v16.SetFilePrefix("C:\\Users\\IMG_1\\Desktop\\QRM_025mmCTno_linepairs\\obj03\\obj03_");
         v16.SetFilePattern("%s%.3d.raw");
         v16.SetImageRange(0, 72);
 
         marchingCubes.SetInput(v16.GetOutput());
-        marchingCubes.SetValue(0, 1099);
+        marchingCubes.SetValue(0, 1169);
         marchingCubes.Update();
         marchingCubes.ComputeScalarsOff();
-        marchingCubes.ComputeNormalsOff();
+//        marchingCubes.ComputeNormalsOff();
 
         mass.SetInput(marchingCubes.GetOutput());
         System.out.printf("%.3f\n", mass.GetVolume());
